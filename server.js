@@ -12,7 +12,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.get("/", (req, res) => {
     res.json({ message: "Hello from server!" })
-    console.log("hello server started")
+    
 });
 
 const contactEmail = nodemailer.createTransport({
@@ -33,8 +33,7 @@ contactEmail.verify((error) => {
 })
 
 app.post('/contact', bodyParser.urlencoded({extended:false}),(req,res)=>{
-    console.log("contact api")
-    res.send("hello contact")
+    
 const name = req.body.firstName + req.body.lastName;
 const email = req.body.email;
 const message = req.body.message;
@@ -60,39 +59,7 @@ const phone = req.body.phone;
 })
 
 
-// const sendContactFormEmail = async (req, res) => {
-//     const name = req.body.firstName + req.body.lastName;
-//     const email = req.body.email;
-//     const message = req.body.message;
-//     const phone = req.body.phone;
 
-
-
-//     const mailOptions = {
-//         from: process.env.GMAIL_APP_EMAIL,
-//         to: 'syedkumailabbas46@gmail.com',
-//         subject: subject,
-//         text: `<p>Name: ${name}</p>
-//         <p>Email: ${email}</p>
-//         <p>Phone: ${phone}</p>
-//         <p>Message: ${message}</p>`,
-//         // This is the new line
-//         replyTo: email
-//     };
-
-//     await contactEmail.sendMail(mailOptions);
-
-//     res.send({
-//         success: true,
-//         message: 'Your email has been sent.'
-//     });
-// };
-
-// app.post('/contact', ()=>{
-//     sendContactFormEmail;
-//     console.log("hello email send")
-
-// });
 
 app.listen(PORT, () => {
     console.log(`Server is online on port : ${PORT}`)
